@@ -8,6 +8,10 @@
     <p id="install-text">PlantPal-App installieren:</p>
     <button id="install-button" style="display: none;">Install App</button>
 
+    @livewire('MQTT-livewire-send')
+
+    @livewire('MQTT-livewire-receive')
+
     <script>
         let deferredPrompt;
         const installButton = document.getElementById('install-button');
