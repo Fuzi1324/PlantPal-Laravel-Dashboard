@@ -3,14 +3,31 @@
 @section('content')
     <h1>PlantPal</h1>
 
-    <h2>Willkommen, USERNAME!</h2>
+    @auth
+        <h2>Willkommen, {{ Auth::user()->name }}!</h2>
 
-    <p id="install-text">PlantPal-App installieren:</p>
-    <button id="install-button" style="display: none;">Install App</button>
+        <h3>Deine Geräte:</h3>
+        <ul>
+            @foreach ($devices as $device)
+                <li>
+                    <a href="{{ route('devices.show', $device->id) }}">
+                        {{ $device->name ?? $device->device_id }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
 
-    @livewire('MQTT-livewire-send')
+        <p id="install-text">PlantPal-App installieren:</p>
+        <button id="install-button" style="display: none;">Install App</button>
+    @else
+        <!-- Inhalt für Gäste -->
+        <h1>Willkommen bei PlantPal!</h1>
+        <p>Mit PlantPal kannst du deine Pflanzen intelligent überwachen.</p>
+        <a href="{{ route('login') }}">Anmelden</a> oder
+        <a href="{{ route('register') }}">Registrieren</a>
+    @endauth
 
-    @livewire('MQTT-livewire-receive')
+
 
     <script>
         let deferredPrompt;

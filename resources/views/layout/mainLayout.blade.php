@@ -28,29 +28,27 @@
 </head>
 
 <body>
-    {{-- @include('layout.navigation.navigation_horizontal') --}}
+    <nav>
+        <ul>
+            @auth
+                <li><a href="{{ route('home') }}">Startseite</a></li>
+                <li><a href="{{ route('devices.index') }}">Meine Geräte</a></li>
+                <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">Abmelden</button>
+                    </form>
+                </li>
+            @else
+                <li><a href="{{ route('login') }}">Anmelden</a></li>
+                <li><a href="{{ route('register') }}">Registrieren</a></li>
+            @endauth
+        </ul>
+    </nav>
 
-    <div class="container-fluid full-height d-flex">
-        <div class="row flex-grow-1 w-100">
-            <div class="col-md-2 p-0">
-                {{-- @include('layout.navigation.navigation_vertical') --}}
-            </div>
-            <div class="col-md-10">
-                <div class="row">
-                    <div class="pl-5 pr-5 w-100">
-                        <div class="container mt-3">
-                            @include('layout.errors')
-                            <div class="card shadow-sm rounded-3">
-                                <div class="card-body">
-                                    @yield('content')
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <main>
+        @yield('content')
+    </main>
 
     @livewireScripts
 
