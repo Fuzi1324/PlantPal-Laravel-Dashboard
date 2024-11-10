@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Console\Command;
 use PhpMqtt\Client\Facades\MQTT;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -29,6 +30,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        $devices = Auth::user()->devices;
+        return view('home', compact('devices'));
     }
 }

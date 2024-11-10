@@ -13,6 +13,7 @@ RUN a2enmod rewrite
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql zip
 
+# Set the document root
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
@@ -38,6 +39,9 @@ RUN mkdir -p /var/log/supervisor && \
 
 # Copy Supervisor configuration
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
+# Copy .env file (optional)
+COPY .env /var/www/html/.env
 
 # Expose port 80
 EXPOSE 80

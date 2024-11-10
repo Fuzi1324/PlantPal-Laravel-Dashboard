@@ -6,9 +6,20 @@ use Livewire\Component;
 use PhpMqtt\Client\MqttClient;
 use PhpMqtt\Client\ConnectionSettings;
 
+use App\Models\Device;
+
 class MQTTLivewireSend extends Component
 {
+    public $deviceId;
+    public $applicationId;
     public $message = '';
+
+    public function mount($deviceId)
+    {
+        $device = Device::where('device_id', $deviceId)->firstOrFail();
+        $this->deviceId = $device->device_id;
+        $this->applicationId = $device->application_id;
+    }
 
     public function sendDownlink()
     {
@@ -28,16 +39,13 @@ class MQTTLivewireSend extends Component
         try {
             $mqtt->connect($connectionSettings, true);
 
-            $applicationId = 'plant-pal@ttn'; // Ersetze durch deine Anwendungs-ID
-            $deviceId = '0001-plant-00-00'; // Ersetze durch die Device-ID deines Geräts
-
-            $topic = "v3/{$applicationId}/devices/{$deviceId}/down/push";
+            $topic = "v3/{$this->applicationId}/devices/{$this->deviceId}/down/push";
 
             $message = [
                 'downlinks' => [
                     [
                         'f_port' => 15,
-                        'frm_payload' => base64_encode('Hello, Device!'),
+                        'frm_payload' => base64_encode($this->message),
                         'priority' => 'NORMAL',
                     ],
                 ],
@@ -47,7 +55,7 @@ class MQTTLivewireSend extends Component
 
             $mqtt->disconnect();
         } catch (\Exception $e) {
-            dd('Verbindungsfehler: ' . $e->getMessage());
+            session()->flash('error', 'Verbindungsfehler: ' . $e->getMessage());
         }
     }
 
@@ -55,8 +63,6 @@ class MQTTLivewireSend extends Component
     {
         $this->sendDownlink();
     }
-
-
 
     public function render()
     {
