@@ -1,33 +1,27 @@
-@extends('layout.mainLayout')
+<x-guest-layout>
+    <div class="py-4 px-6">
+        <div class="text-center">
+            <h1>Willkommen bei PlantPal!</h1>
+            <p>Mit PlantPal kannst du deine Pflanzen intelligent überwachen.</p>
 
-@section('content')
-    <h1>PlantPal</h1>
+            <p id="install-text">PlantPal-App installieren:</p>
+            <button id="install-button" style="display: none;">Install App</button>
 
-    @auth
-        <h2>Willkommen, {{ Auth::user()->name }}!</h2>
+            @if (Route::has('login'))
+                <div class="mt-6">
+                    @auth
+                        <a href="{{ url('/dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 
-        <h3>Deine Geräte:</h3>
-        <ul>
-            @foreach ($devices as $device)
-                <li>
-                    <a href="{{ route('devices.show', $device->id) }}">
-                        {{ $device->name ?? $device->device_id }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-
-        <p id="install-text">PlantPal-App installieren:</p>
-        <button id="install-button" style="display: none;">Install App</button>
-    @else
-        <!-- Inhalt für Gäste -->
-        <h1>Willkommen bei PlantPal!</h1>
-        <p>Mit PlantPal kannst du deine Pflanzen intelligent überwachen.</p>
-        <a href="{{ route('login') }}">Anmelden</a> oder
-        <a href="{{ route('register') }}">Registrieren</a>
-    @endauth
-
-
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+        </div>
+    </div>
 
     <script>
         let deferredPrompt;
@@ -86,4 +80,4 @@
         });
         updateUI();
     </script>
-@endsection
+</x-guest-layout>

@@ -5,13 +5,13 @@ namespace App\Livewire;
 use Livewire\Component;
 use PhpMqtt\Client\MqttClient;
 use PhpMqtt\Client\ConnectionSettings;
+
 use App\Models\Device;
 
 class MQTTLivewireSend extends Component
 {
     public $deviceId;
     public $applicationId;
-    public $tenantId = 'ttn';
     public $message = '';
 
     public function mount($deviceId)
@@ -25,7 +25,8 @@ class MQTTLivewireSend extends Component
     {
         $server   = env('MQTT_HOST');
         $port     = env('MQTT_PORT');
-        $username = "{$this->applicationId}@{$this->tenantId}";
+        $clientId = env('MQTT_CLIENT_ID');
+        $username = env('MQTT_USERNAME');
         $password = env('MQTT_PASSWORD');
 
         $connectionSettings = (new ConnectionSettings)
@@ -33,12 +34,12 @@ class MQTTLivewireSend extends Component
             ->setPassword($password)
             ->setUseTls(true);
 
-        $mqtt = new MqttClient($server, $port, $this->deviceId);
+        $mqtt = new MqttClient($server, $port, $clientId);
 
         try {
             $mqtt->connect($connectionSettings, true);
 
-            $topic = "v3/{$this->applicationId}@{$this->tenantId}/devices/{$this->deviceId}/down/push";
+            $topic = "v3/{$this->applicationId}/devices/{$this->deviceId}/down/push";
 
             $message = [
                 'downlinks' => [
@@ -54,7 +55,7 @@ class MQTTLivewireSend extends Component
 
             $mqtt->disconnect();
         } catch (\Exception $e) {
-            session()->flash('error', 'Connection error: ' . $e->getMessage());
+            session()->flash('error', 'Verbindungsfehler: ' . $e->getMessage());
         }
     }
 

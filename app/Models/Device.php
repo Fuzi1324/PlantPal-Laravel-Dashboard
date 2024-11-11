@@ -10,7 +10,12 @@ class Device extends Model
 
     use HasFactory;
 
-    protected $fillable = ['device_id', 'application_id', 'name'];
+    protected $fillable = ['user_id', 'device_id', 'application_id', 'name'];
+
+    public function installation()
+    {
+        return $this->belongsTo(Installation::class);
+    }
 
     public function user()
     {

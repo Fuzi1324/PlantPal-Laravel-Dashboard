@@ -1,6 +1,4 @@
-@extends('layout.mainLayout')
-
-@section('content')
+<x-app-layout>
     <h1>Meine Geräte</h1>
     <ul>
         @foreach ($devices as $device)
@@ -11,4 +9,4 @@
             </li>
         @endforeach
     </ul>
-@endsection
+</x-app-layout>

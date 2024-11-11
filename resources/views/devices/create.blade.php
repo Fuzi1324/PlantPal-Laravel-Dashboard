@@ -1,6 +1,4 @@
-@extends('layout.mainLayout')
-
-@section('content')
+<x-app-layout>
     <h1>Gerät hinzufügen</h1>
     <form action="{{ route('devices.store') }}" method="POST">
         @csrf
@@ -8,4 +6,4 @@
         <input type="text" name="qr_code" id="qr_code" required>
         <button type="submit">Gerät hinzufügen</button>
     </form>
-@endsection
+</x-app-layout>
