@@ -1,6 +1,7 @@
 <x-app-layout>
-    <h1>Gerät: {{ $device->name ?? $device->device_id }}</h1>
-
-    @livewire('m-q-t-t-livewire-send', ['deviceId' => $device->device_id])
-    @livewire('m-q-t-t-livewire-receive', ['deviceId' => $device->device_id])
+    <div>
+        <h2>Device Details: {{ $device->device_id }}</h2>
+        @livewire('mqtt-livewire-send', ['deviceId' => $device->device_id])
+        @livewire('mqtt-livewire-receive', ['deviceId' => $device->device_id])
+    </div>
 </x-app-layout>

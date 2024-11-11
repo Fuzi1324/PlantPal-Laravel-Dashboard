@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('mqtt_messages', function (Blueprint $table) {
             $table->id();
-            $table->string('application_id')->nullable();
-            $table->string('device_id')->nullable();
+            $table->string('application_id');
+            $table->string('device_id');
             $table->string('topic');
             $table->json('payload');
             $table->timestamps();

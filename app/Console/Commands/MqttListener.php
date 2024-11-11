@@ -31,35 +31,35 @@ class MqttListener extends Command
         try {
             $mqtt->connect($connectionSettings, true);
 
-            $topic = 'v3/+/devices/+/up'; // Abonniere alle Uplink-Nachrichten
+            $topic = 'v3/+/devices/+/up';
 
             $mqtt->subscribe($topic, function ($topic, $message) {
-                // Nachricht in der Datenbank speichern
-
-                // Optionale Extraktion von Anwendungs-ID und Geräte-ID aus dem Thema
                 $pattern = '/v3\/([^\/]+)\/devices\/([^\/]+)\/up/';
                 preg_match($pattern, $topic, $matches);
 
                 $applicationId = $matches[1] ?? null;
                 $deviceId = $matches[2] ?? null;
 
-                // Nachricht dekodieren
                 $payload = json_decode($message, true);
 
-                // Erstelle einen neuen Datenbankeintrag
-                MqttMessage::create([
-                    'application_id' => $applicationId,
-                    'device_id' => $deviceId,
-                    'topic' => $topic,
-                    'payload' => $payload,
-                ]);
+                $existingMessagesCount = MqttMessage::where('device_id', $deviceId)
+                    ->whereDate('created_at', now()->toDateString())
+                    ->count();
+
+                if ($existingMessagesCount < 2) {
+                    MqttMessage::create([
+                        'application_id' => $applicationId,
+                        'device_id' => $deviceId,
+                        'topic' => $topic,
+                        'payload' => $payload,
+                    ]);
+                }
             }, 0);
 
-            $mqtt->loop(true); // Dauerschleife zum Empfangen von Nachrichten
-
+            $mqtt->loop(true);
             $mqtt->disconnect();
         } catch (\Exception $e) {
-            $this->error('Verbindungsfehler: ' . $e->getMessage());
+            $this->error('Connection error: ' . $e->getMessage());
         }
     }
 }

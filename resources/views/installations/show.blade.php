@@ -1,13 +1,16 @@
 <x-app-layout>
     <div>
-        <h2>Devices</h2>
+        <h2>Plants in {{ $installation->name }}</h2>
         <ul>
             @foreach ($installation->devices as $device)
-                <li>{{ $device->name ?? $device->device_id }}</li>
+                <li>
+                    <a href="{{ route('devices.show', $device->id) }}">
+                        {{ $device->device_id }}
+                    </a>
+                </li>
             @endforeach
         </ul>
 
-        <!-- Form to add a new device -->
         <h3>Add Device</h3>
         <form action="{{ route('installations.addDevice', $installation) }}" method="POST">
             @csrf

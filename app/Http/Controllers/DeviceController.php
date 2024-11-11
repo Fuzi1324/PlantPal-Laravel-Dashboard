@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Device;
+use App\Models\MqttMessage;
 
 class DeviceController extends Controller
 {
@@ -18,37 +19,10 @@ class DeviceController extends Controller
 
     public function show(Device $device)
     {
-        if ($device->user_id !== Auth::user()->id) {
-            abort(403, 'Unberechtigter Zugriff auf dieses Gerät.');
-        }
-
+        $messages = MqttMessage::where('device_id', $device->id)
+            ->whereDate('created_at', '>=', now()->subDays(30))
+            ->orderBy('created_at')
+            ->get();
         return view('devices.show', compact('device'));
-    }
-
-    public function store(Request $request)
-    {
-        $qrData = $request->input('qr_code');
-
-        $deviceData = $this->parseQrCode($qrData);
-
-        Device::create([
-            'user_id' => Auth::user()->id,
-            'device_id' => $deviceData['device_id'],
-            'application_id' => $deviceData['application_id'],
-            'name' => $deviceData['name'] ?? null,
-        ]);
-
-        return redirect()->route('devices.index')->with('success', 'Gerät erfolgreich hinzugefügt.');
-    }
-
-    private function parseQrCode($qrData)
-    {
-        // Implementiere die Logik zum Parsen des QR-Codes
-        // Beispiel:
-        // return [
-        //     'device_id' => '...',
-        //     'application_id' => '...',
-        //     'name' => '...'
-        // ];
     }
 }
