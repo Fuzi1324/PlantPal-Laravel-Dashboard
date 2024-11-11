@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Installation;
 use App\Models\Device;
-use App\Models\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -33,40 +32,63 @@ class InstallationController extends Controller
 
     public function store(Request $request)
     {
-        $qrData = $request->input('qr_code');
-        $installationData = $this->parseQrCode($qrData);
+        try {
+            $qrData = $request->input('qr_code');
+            $installationData = $this->parseQrCode($qrData);
 
-        $installation = Installation::create([
-            'user_id' => Auth::id(),
-            'installation_code' => $installationData['installation_code'],
-            'name' => $installationData['name'] ?? null,
-        ]);
+            $existingInstallation = Installation::where('installation_code', $installationData['installation_code'])
+                ->where('user_id', Auth::id())
+                ->first();
 
-        if (!empty($installationData['devices'])) {
-            foreach ($installationData['devices'] as $deviceData) {
-                $installation->devices()->create([
-                    'user_id' => Auth::id(),
-                    'device_id' => $deviceData['device_id'],
-                    'application_id' => $deviceData['application_id'],
-                    'name' => $deviceData['name'] ?? null,
-                ]);
+            if ($existingInstallation) {
+                return redirect()->back()->with('error', 'This installation is already registered by any user.');
             }
+
+            $installation = Installation::create([
+                'user_id' => Auth::id(),
+                'installation_code' => $installationData['installation_code'],
+                'name' => $installationData['name'] ?? null,
+            ]);
+
+            if (!empty($installationData['devices'])) {
+                foreach ($installationData['devices'] as $deviceData) {
+                    $existingDevice = Device::where('device_id', $deviceData['device_id'])->first();
+
+                    if ($existingDevice) {
+                        $installation->delete();
+                        return redirect()->back()->with('error', "The device {$deviceData['device_id']} is already registered.");
+                    }
+
+                    $installation->devices()->create([
+                        'user_id' => Auth::id(),
+                        'device_id' => $deviceData['device_id'],
+                        'application_id' => $deviceData['application_id'],
+                        'name' => $deviceData['name'] ?? null,
+                    ]);
+                }
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
 
-        return redirect()->route('installations.index')->with('success', 'Installation added successfully.');
+        return redirect()->route('installations.index')->with('success', 'Installation and devices added successfully.');
     }
+
 
     private function parseQrCode($qrData)
     {
-        $data = json_decode($qrData, true);
+        try {
+            $data = json_decode($qrData, true);
 
-        if (!$data || !isset($data['installation_code'])) {
+            if (!$data || !isset($data['installation_code'])) {
+                throw new \Exception('Invalid QR code data.');
+            }
+        } catch (\Exception $e) {
             throw new \Exception('Invalid QR code data.');
         }
 
         return [
             'installation_code' => $data['installation_code'],
-            'name' => $data['name'] ?? null,
             'devices' => $data['devices'] ?? [],
         ];
     }
@@ -85,7 +107,6 @@ class InstallationController extends Controller
                 $devices[] = [
                     'device_id' => $device['device_id'],
                     'application_id' => $device['application_id'],
-                    'name' => $device['name'] ?? null,
                 ];
             }
             return $devices;
@@ -98,22 +119,31 @@ class InstallationController extends Controller
         return [[
             'device_id' => $data['device_id'],
             'application_id' => $data['application_id'],
-            'name' => $data['name'] ?? null,
         ]];
     }
 
     public function addDevice(Request $request, Installation $installation)
     {
-        $qrData = $request->input('qr_code');
-        $devices = $this->parseDeviceQrCode($qrData);
+        try {
+            $qrData = $request->input('qr_code');
+            $devices = $this->parseDeviceQrCode($qrData);
 
-        foreach ($devices as $deviceData) {
-            $installation->devices()->create([
-                'user_id' => Auth::id(),
-                'device_id' => $deviceData['device_id'],
-                'application_id' => $deviceData['application_id'],
-                'name' => $deviceData['name'],
-            ]);
+            foreach ($devices as $deviceData) {
+                $existingDevice = Device::where('device_id', $deviceData['device_id'])->first();
+
+                if ($existingDevice) {
+                    return redirect()->back()->with('error', "The device {$deviceData['device_id']} is already registered.");
+                }
+
+                $installation->devices()->create([
+                    'user_id' => Auth::id(),
+                    'device_id' => $deviceData['device_id'],
+                    'application_id' => $deviceData['application_id'],
+                    'name' => $deviceData['name'] ?? null,
+                ]);
+            }
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
         }
 
         return redirect()->route('installations.show', $installation)->with('success', 'Devices added successfully.');

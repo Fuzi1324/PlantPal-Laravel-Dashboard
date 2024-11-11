@@ -10,7 +10,7 @@ class Installation extends Model
 
     use HasFactory;
 
-    protected $fillable = ['user_id', 'installation_code', 'name'];
+    protected $fillable = ['user_id', 'installation_code',];
 
     public function user()
     {

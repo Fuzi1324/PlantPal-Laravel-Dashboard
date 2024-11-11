@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('device_id')->unique();
             $table->string('application_id');
-            $table->string('name')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('installation_id')->nullable();

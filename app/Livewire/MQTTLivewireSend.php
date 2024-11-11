@@ -11,7 +11,6 @@ class MQTTLivewireSend extends Component
 {
     public $deviceId;
     public $applicationId;
-    public $tenantId = 'ttn';
     public $message = '';
 
     public function mount($deviceId)
@@ -19,13 +18,15 @@ class MQTTLivewireSend extends Component
         $device = Device::where('device_id', $deviceId)->firstOrFail();
         $this->deviceId = $device->device_id;
         $this->applicationId = $device->application_id;
+        $this->message = "The Plant has to be watered. Device ID: {$device->device_id}.";
     }
 
     public function sendDownlink()
     {
         $server   = env('MQTT_HOST');
         $port     = env('MQTT_PORT');
-        $username = "{$this->applicationId}@{$this->tenantId}";
+        $clientId = env('MQTT_CLIENT_ID') . '_downlink_sender';
+        $username = env('MQTT_USERNAME');
         $password = env('MQTT_PASSWORD');
 
         $connectionSettings = (new ConnectionSettings)
@@ -33,12 +34,12 @@ class MQTTLivewireSend extends Component
             ->setPassword($password)
             ->setUseTls(true);
 
-        $mqtt = new MqttClient($server, $port, $this->deviceId);
+        $mqtt = new MqttClient($server, $port, $clientId);
 
         try {
             $mqtt->connect($connectionSettings, true);
 
-            $topic = "v3/{$this->applicationId}@{$this->tenantId}/devices/{$this->deviceId}/down/push";
+            $topic = "v3/{$this->applicationId}@ttn/devices/{$this->deviceId}/down/push";
 
             $message = [
                 'downlinks' => [
@@ -51,7 +52,6 @@ class MQTTLivewireSend extends Component
             ];
 
             $mqtt->publish($topic, json_encode($message), 0);
-
             $mqtt->disconnect();
         } catch (\Exception $e) {
             session()->flash('error', 'Connection error: ' . $e->getMessage());

@@ -10,7 +10,7 @@ class Device extends Model
 
     use HasFactory;
 
-    protected $fillable = ['user_id', 'device_id', 'application_id', 'name'];
+    protected $fillable = ['user_id', 'device_id', 'application_id',];
 
     public function installation()
     {
