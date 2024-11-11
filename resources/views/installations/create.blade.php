@@ -16,7 +16,6 @@
     <script>
         function onScanSuccess(decodedText, decodedResult) {
             document.getElementById('qr_code').value = decodedText;
-            // Stop scanning after successful scan
             html5QrcodeScanner.clear();
         }
 
