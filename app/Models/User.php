@@ -46,8 +46,8 @@ class User extends Authenticatable
         ];
     }
 
-    public function devices()
+    public function installations()
     {
-        return $this->hasMany(Device::class);
+        return $this->hasMany(Installation::class);
     }
 }

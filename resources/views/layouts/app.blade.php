@@ -8,12 +8,17 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Favicon -->
+    <link rel="icon" href="{{ url('./images/logo.ico') }}" type="image/x-icon">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @livewireStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -34,6 +39,23 @@
             {{ $slot }}
         </main>
     </div>
+
+
+    @livewireScripts
+
+    <script src="{{ asset('/sw.js') }}"></script>
+
+    <script>
+        if (!navigator.serviceWorker.controller) {
+
+            navigator.serviceWorker.register("/sw.js").
+
+            then(function(reg) {
+                console.log("Service worker has been registered for scope: " + reg.scope);
+            });
+        }
+    </script>
+
 </body>
 
 </html>
