@@ -6,12 +6,36 @@ use Illuminate\Console\Command;
 use PhpMqtt\Client\MqttClient;
 use PhpMqtt\Client\ConnectionSettings;
 use App\Models\MqttMessage;
+use App\Models\Plant;
 
 class MqttListener extends Command
 {
     protected $signature = 'mqtt:listen';
 
     protected $description = 'Listens to MQTT messages and stores them in the database';
+
+    private function processSensorData($deviceId, $payload)
+    {
+        $sensorData = [
+            ['index' => 0, 'moisture' => rand(0, 100)],
+            ['index' => 1, 'moisture' => rand(0, 100)],
+            ['index' => 2, 'moisture' => rand(0, 100)],
+            ['index' => 3, 'moisture' => rand(0, 100)]
+        ];
+
+        foreach ($sensorData as $data) {
+            Plant::updateOrCreate(
+                [
+                    'device_id' => $deviceId,
+                    'sensor_index' => $data['index']
+                ],
+                [
+                    'last_moisture' => $data['moisture'],
+                    'last_message_at' => now()
+                ]
+            );
+        }
+    }
 
     public function handle()
     {
@@ -41,6 +65,8 @@ class MqttListener extends Command
                 $deviceId = $matches[2] ?? null;
 
                 $payload = json_decode($message, true);
+
+                $this->processSensorData($deviceId, $payload);
 
                 $existingMessagesCount = MqttMessage::where('device_id', $deviceId)
                     ->whereDate('created_at', now()->toDateString())

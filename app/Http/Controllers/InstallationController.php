@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Installation;
 use App\Models\Device;
+use App\Models\Plant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -27,7 +28,17 @@ class InstallationController extends Controller
             abort(403, 'Unauthorized access.');
         }
 
-        return view('installations.show', compact('installation'));
+        $devices = $installation->devices;
+        $plants = collect();
+
+        foreach ($devices as $device) {
+            $devicePlants = Plant::where('device_id', $device->device_id)
+                ->orderBy('sensor_index')
+                ->get();
+            $plants = $plants->concat($devicePlants);
+        }
+
+        return view('installations.show', compact('installation', 'plants'));
     }
 
     public function store(Request $request)

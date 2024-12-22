@@ -1,210 +1,251 @@
-/* General Layout */
+/* General Font */
 body {
-    background-color: #f5f1e9; /* Light beige background */
-    font-family: 'Figtree', sans-serif;
+    font-family: 'Outfit', sans-serif;
+    background-color: #f5f1e9;
 }
 
 /* Navbar */
 .navbar {
-    background-color: #305d4e; /* Dark green color */
+    background: linear-gradient(to bottom, #347f6e 0%, #154531 100%);
     color: #ffffff;
-    padding: 15px 20px;
+    padding: 15px 30px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 4rem;
+    margin-bottom: 2rem;
 }
 
+/* PLANTPAL Logo */
 .navbar .logo {
-    font-size: 24px;
-    font-weight: bold;
+    font-family: 'Grow West', cursive;
+    font-size: 2.5rem;
+    font-weight: normal;
+    letter-spacing: 0.05em;
 }
 
+/* Back Button */
 .navbar .back-button {
     color: #ffffff;
-    font-size: 20px;
-    margin-right: 10px;
+    font-size: 1.5rem;
+    margin-right: 2rem;
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
 }
 
-.dropdown-toggle {
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 16px;
-    cursor: pointer;
-    padding: 10px;
+.navbar .back-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Left Container for Back Button and Logo */
+.navbar .flex.items-center {
     display: flex;
     align-items: center;
 }
 
-.dropdown-toggle svg {
-    width: 20px;
-    height: 20px;
-    margin-left: 5px;
-}
-
-/* Main Content Layout */
-.main-container {
-    padding: 20px;
-}
-
-.installation-overview {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    align-items: start;
-}
-
-/* Plant Details Card */
-.plant-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    width: 100%;
-}
-
-.plant-card .title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-.plant-card .water-level {
-    display: flex;
+/* Dropdown Button */
+.dropdown-trigger-button {
+    font-family: 'Outfit', sans-serif;
+    background-color: transparent;
+    color: white;
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    margin: 15px 0;
+    gap: 0.5rem;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease-in-out;
 }
 
-.plant-card .water-button {
-    background-color: #305d4e;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+.dropdown-trigger-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.plant-card .water-button:hover {
-    background-color: #274a3e;
+/* Dropdown Content */
+.dropdown-content {
+    font-family: 'Outfit', sans-serif;
+    position: absolute;
+    right: 0;
+    margin-top: 0.5rem;
+    min-width: 12rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    z-index: 50;
 }
 
-/* Water Chart */
-.water-chart {
-    background-color: #e0ede8;
-    border-radius: 8px;
-    padding: 20px;
-    width: 50%;
-}
-
-.water-chart .chart-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.water-chart .bar {
-    background-color: #305d4e;
-    height: 8px;
-    border-radius: 4px;
-}
-
-/* Installation Overview */
-.installation-overview {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-/* Installation Card Styling */
-.installation-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    cursor: pointer;
-    min-height: 200px;
-}
-
-.installation-card img {
-    max-width: 80px;
-    height: auto;
-    margin-bottom: 10px;
-    border-radius: 8px;
-}
-
-.installation-card h3 {
-    font-size: 18px;
-    color: #305d4e;
-}
-
-/* Add Device Card Styling */
-.add-device-card {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #e0ede8;
-    border: 2px dashed #305d4e;
-    color: #305d4e;
-    font-size: 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.add-device-card:hover {
-    background-color: #d5e6de;
-}
-
-.add-device-content {
-    text-align: center;
-    padding: 20px;
-}
-
-.add-device-link {
-    color: inherit;
+.dropdown-content a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #374151;
+    font-size: 0.875rem;
     text-decoration: none;
+    transition: all 0.15s ease-in-out;
 }
 
-/* QR Scanner and Add Installation Section */
-.qr-scanner-section {
+.dropdown-content a:hover {
+    background-color: #f3f4f6;
+}
+
+.dropdown-content form {
+    margin: 0;
+}
+
+.dropdown-content a + form a {
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Installation Overview Grid */
+.installation-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Installation Card */
+.installation-card {
+    background: linear-gradient(to bottom, #72ae9e 40%, #e4ebe3 100%);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    min-height: 280px;
+    text-decoration: none;
 }
 
-.qr-scanner {
-    width: 300px;
-    margin-bottom: 15px;
+.installation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.installation-card img {
+    width: 180px;
+    height: auto;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.installation-card h3 {
+    font-family: 'Outfit', sans-serif;
+    color: black;
+    font-size: 1.25rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Add Installation Card */
+.add-device-card {
+    background: linear-gradient(to bottom, #72ae9e 40%, #e4ebe3 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
 }
 
 .add-installation-button {
-    background-color: #305d4e;
-    color: #ffffff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-align: center;
+    font-family: 'Outfit', sans-serif;
+    background-color: white;
+    color: #305d4e;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
     cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.3s;
 }
 
 .add-installation-button:hover {
-    background-color: #274a3e;
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+/* QR Scanner Section */
+.qr-reader-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+
+#qr-reader {
+    width: 100% !important;
+    border: none !important;
+    background: white;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+}
+
+#qr-reader__scan_region {
+    background: white;
+    padding: 0 !important;
+}
+
+#qr-reader__scan_region img {
+    width: 250px !important;
+    height: 250px !important;
+    object-fit: cover;
+}
+
+#qr-reader select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.375rem;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 1rem;
+}
+
+#qr-reader button {
+    background-color: white;
+    color: #305d4e;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    margin: 0.5rem 0;
+}
+
+#qr-reader button:hover {
+    background-color: #f8f9fa;
 }
 
 /* Responsive Adjustments */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column;
+@media (max-width: 640px) {
+    .installation-overview {
+        grid-template-columns: 1fr;
+        padding: 1rem;
     }
+
+    .installation-card {
+        min-height: 240px;
+    }
+}
+
+/* Main Container */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
