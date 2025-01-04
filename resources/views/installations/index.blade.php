@@ -12,14 +12,7 @@
                 <form action="{{ route('installations.store') }}" method="POST" class="qr-scanner-section">
                     @csrf
                     <input type="text" name="qr_code" id="qr_code" class="hidden">
-                    <div id="qr-reader" class="qr-reader-container"></div>
-
-                    <div class="manual-input">
-                        <p class="text-white text-center mb-4">oder QR-Code manuell eingeben:</p>
-                        <input type="text" placeholder="QR-Code Daten eingeben" class="qr-manual-input"
-                            onchange="document.getElementById('qr_code').value = this.value">
-                    </div>
-
+                    <div id="qr-reader"></div>
                     <button type="submit" class="add-installation-button">
                         + Installation hinzufügen
                     </button>
@@ -33,12 +26,13 @@
         function onScanSuccess(decodedText, decodedResult) {
             document.getElementById('qr_code').value = decodedText;
             html5QrcodeScanner.clear();
+            document.querySelector('form').submit();
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
             "qr-reader", {
                 fps: 10,
-                qrbox: 250
+                qrbox: 180
             });
         html5QrcodeScanner.render(onScanSuccess);
     </script>
