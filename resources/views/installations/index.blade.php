@@ -26,13 +26,12 @@
         function onScanSuccess(decodedText, decodedResult) {
             document.getElementById('qr_code').value = decodedText;
             html5QrcodeScanner.clear();
-            document.querySelector('form').submit();
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
             "qr-reader", {
                 fps: 10,
-                qrbox: 180
+                qrbox: 250
             });
         html5QrcodeScanner.render(onScanSuccess);
     </script>
