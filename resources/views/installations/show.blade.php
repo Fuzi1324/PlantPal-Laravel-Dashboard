@@ -3,11 +3,11 @@
     <div class="container mx-auto px-4 py-8">
         <h2 class="text-2xl font-bold mb-6">Plants in {{ $installation->name }}</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="plant-grid">
             @foreach ($plants as $plant)
-                <div class="bg-white rounded-lg shadow p-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h3 class="text-lg font-semibold">
+                <div class="plant-item">
+                    <div class="PlantandDevice">
+                        <h3 class="PlantDevice">
                             {{ $plant->name ?? 'Plant ' . ($plant->sensor_index + 1) }}
                         </h3>
                         <span class="text-sm text-gray-500">
@@ -15,7 +15,7 @@
                         </span>
                     </div>
 
-                    <div class="space-y-4">
+                    <div class="Plant-info">
                         <div class="flex justify-between items-center">
                             <span class="text-gray-600">Moisture Level:</span>
                             <span
@@ -44,7 +44,7 @@
             <h3 class="text-xl font-semibold mb-4">Add Device</h3>
             <form action="{{ route('installations.addDevice', $installation) }}" method="POST">
                 @csrf
-                <div class="space-y-4">
+                <div class="Plant-info">
                     <div>
                         <label for="qr_code" class="block text-sm font-medium text-gray-700">
                             Enter QR Code or Device ID

@@ -4,11 +4,102 @@ body {
     background-color: #f5f1e9;
 }
 
+/* Container für das Pflanzenraster */
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+/* Einzelnes Pflanzen-Element */
+.plant-item {
+    position: relative;
+    height: 200px;
+    width: 150px;
+    background-image: url('../../public/images/palette_plant.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center top;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Infobereich unter der Pflanze */
+.Plant-info {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    padding: 5px;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    margin-bottom: 7px;
+    box-sizing: border-box;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.PlantDevice {
+    color: darkgrey;
+    position: absolute;
+    top: -50px;
+}
+
+.water-button {
+    font-family: 'Outfit', sans-serif;
+    background-color: #205346;
+    color: white;
+    border: 2px solid #205346;
+    padding: 10px 20px;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+.water-button:hover {
+    font-family: 'Outfit', sans-serif;
+    background-color: #E4EBE3;
+    color: #205346;
+    border: 2px solid #205346;
+    padding: 10px 20px;
+    border-radius: 9px;
+    font-size: 16px;
+
+}
+
+.button-container {
+    display: flex; /* Flexbox aktivieren */
+    justify-content: center; /* Bild horizontal zentrieren */
+    align-items: center; /* Optional: Bild auch vertikal zentrieren */
+}
+
+.plant-container {
+    display: flex; /* Flexbox aktivieren */
+    justify-content: center; /* Bild horizontal zentrieren */
+    align-items: center; /* Optional: Bild auch vertikal zentrieren */
+}
+
+.plant-image {
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(25px 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+
+
+
+
+
 /* Navbar */
 .navbar {
     background: linear-gradient(to bottom, #347f6e 0%, #154531 100%);
     color: #ffffff;
-    padding: 15px 30px;
+    padding: 30px;
+    padding-top: 20px;
+    padding-bottom: 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -17,9 +108,19 @@ body {
 }
 
 /* PLANTPAL Logo */
+
+@font-face {
+    font-family: 'Grow West';
+    src: url('../fonts/growwestregular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .navbar .logo {
-    font-family: 'Grow West', cursive;
-    font-size: 2.5rem;
+    font-family: "Grow West";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 3.4rem;
     font-weight: normal;
     letter-spacing: 0.05em;
 }
@@ -137,14 +238,18 @@ body {
     width: 180px;
     height: auto;
     border-radius: 0.75rem;
-    margin-bottom: 1.5rem;
+    border: 2px solid #000000;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .installation-card h3 {
     font-family: 'Outfit', sans-serif;
     color: black;
-    font-size: 1.25rem;
+    font-size: 1.7rem;
     font-weight: 500;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
     text-align: center;
 }
 
@@ -231,7 +336,7 @@ body {
     border: none !important;
     cursor: pointer !important;
     width: 150px !important;
-    height: 32px !important;
+    height: 50px !important;
     margin: 0 !important;
 }
 

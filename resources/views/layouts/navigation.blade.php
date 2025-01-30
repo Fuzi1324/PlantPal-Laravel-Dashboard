@@ -3,7 +3,7 @@
         <a href="{{ route('installations.index') }}" class="back-button">
             &lt;
         </a>
-        <span class="logo">PLANTPAL</span>
+        <span class="logo">plantpal</span>
     </div>
     <div class="flex items-center">
         @auth
