@@ -1,6 +1,7 @@
 <x-guest-layout>
-    <div class="py-4 px-6">
-        <div class="text-center">
+    <div class="WelcomeBox">
+        <div class="welcome-text">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-logo">
             <h1>Willkommen bei PlantPal!</h1>
             <p>Mit PlantPal kannst du deine Pflanzen intelligent überwachen.</p>
 
@@ -10,7 +11,7 @@
             @if (Route::has('login'))
                 <div class="mt-6">
                     @auth
-                        <a href="{{ url('/installations') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                        <a href="{{ url('/installations') }}" class="DashboardClickl">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Log in</a>
 

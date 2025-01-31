@@ -1,8 +1,50 @@
 /* General Font */
 body {
     font-family: 'Outfit', sans-serif;
-    background-color: #f5f1e9;
+    background-color: #EBE4D2;
 }
+
+/* Welcome page */
+
+.welcome-text {
+    background-color: rgba(32, 83, 70, 0.8); /* Halbtransparentes Weiß */
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.WelcomeBox {
+    background-color: #EBE4D2;
+    color: #f5f1e9; /* Heller Grauton für den Text */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.img-logo {
+    width: 150px;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+.DashboardClickl {
+    color: #ffffff;
+}
+
+.DashboardClickl:hover {
+    color: lightpink;
+}
+
+
 
 /* Container für das Pflanzenraster */
 .plant-grid {
@@ -88,10 +130,25 @@ body {
     filter: drop-shadow(25px 2px 6px rgba(0, 0, 0, 0.4));
 }
 
+.droplet-button {
+    order: 2;
+    width: 30px; /* Größe des Buttons */
+    height: 50px; /* Größe des Buttons */
+    background-image: url('../../public/images/water_drop.png'); /* Bild als Hintergrund */
+    background-size: contain; /* Bild passt sich der Größe des Buttons an */
+    background-repeat: no-repeat; /* Verhindert das Wiederholen des Bildes */
+    border: none; /* Keine Umrandung */
+    background-color: transparent; /* Rest des Buttons transparent */
+    cursor: pointer; /* Handzeiger */
+}
 
+.MoistureLevel {
+    order: 1; /* Feuchtigkeitslevel bleibt an zweiter Stelle */
+}
 
-
-
+.LastUpdate {
+    order: 4;
+}
 
 /* Navbar */
 .navbar {

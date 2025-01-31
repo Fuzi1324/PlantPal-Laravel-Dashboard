@@ -16,7 +16,7 @@
                     </div>
 
                     <div class="Plant-info">
-                        <div class="flex justify-between items-center">
+                        <div class="MoistureLevel">
                             <span class="text-gray-600">Moisture Level:</span>
                             <span
                                 class="font-medium {{ $plant->last_moisture < 30 ? 'text-red-500' : 'text-green-500' }}">
@@ -24,7 +24,7 @@
                             </span>
                         </div>
 
-                        <div class="flex justify-between items-center">
+                        <div class="LastUpdate">
                             <span class="text-gray-600">Last Updated:</span>
                             <span class="text-sm text-gray-500">
                                 {{ $plant->last_message_at ? $plant->last_message_at->diffForHumans() : 'Never' }}
@@ -32,8 +32,7 @@
                         </div>
 
                         <button onclick="window.location.href='{{ route('devices.show', $plant->device->id) }}'"
-                            class="w-full bg-green-600 text-white rounded-md py-2 hover:bg-green-700 transition">
-                            View Details
+                            class="droplet-button">
                         </button>
                     </div>
                 </div>
