@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Outfit';
+    src: url('../fonts/Outfit-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* General Font */
 body {
     font-family: 'Outfit', sans-serif;
@@ -7,6 +14,7 @@ body {
 /* Welcome page */
 
 .welcome-text {
+    font-family: "Outfit", sans-serif;
     background-color: rgba(32, 83, 70, 0.8); /* Halbtransparentes Weiß */
     padding-left: 50px;
     padding-right: 50px;
@@ -21,12 +29,12 @@ body {
 
 .WelcomeBox {
     background-color: #EBE4D2;
-    color: #f5f1e9; /* Heller Grauton für den Text */
+    color: #f5f1e9;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 87vh;
 }
 
 .img-logo {
@@ -62,6 +70,8 @@ body {
     position: relative;
     height: 200px;
     width: 150px;
+    margin-bottom: 50px;
+    border-radius: 8px;
     background-image: url('../../public/images/palette_plant.png');
     background-size: contain;
     background-repeat: no-repeat;
@@ -74,22 +84,85 @@ body {
 
 /* Infobereich unter der Pflanze */
 .Plant-info {
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 8px;
-    padding: 5px;
+    font-family: "Grow West", sans-serif;
     text-align: center;
-    font-size: 12px;
+    color: #E4EBE3;
     width: 100%;
-    margin-bottom: 7px;
+    margin: 9px;
     box-sizing: border-box;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.PlantandDevice {
+    position: relative;  /* Ermöglicht die Positionierung der .device-name innerhalb dieses Containers */
+    margin-bottom: 9.8rem;  /* Um etwas Platz unterhalb zu schaffen, falls gewünscht */
+    width: 100%;
 }
 
 .PlantDevice {
-    color: darkgrey;
+    color: #205346;
     position: absolute;
-    top: -50px;
 }
+
+.device-name {
+    position: absolute;  /* Absolute Positionierung im Bezug auf den Elterncontainer (.PlantandDevice) */
+    margin-top: 245px;
+    color: #2B2F2B;
+}
+
+.droplet {
+    width: 20px; /* Größe des Buttons */
+    background-size: contain; /* Bild passt sich der Größe des Buttons an */
+    background-repeat: no-repeat; /* Verhindert das Wiederholen des Bildes */
+    border: none; /* Keine Umrandung */
+    background-color: transparent; /* Rest des Buttons transparent */
+}
+
+.info-button {
+    background-color: rgba(169, 217, 193, 0.3);
+    cursor: pointer; /* Handzeiger */
+    width: 90%;
+    border-radius: 9px;
+    border: 2px solid rgba(46, 104, 90, 0.5);
+}
+
+.info-button:hover {
+    background-color: rgba(46, 104, 90, 0.5);
+    cursor: pointer; /* Handzeiger */
+    width: 90%;
+    border-radius: 9px;
+    border: 2px solid rgba(32, 83, 70, 0.5);
+}
+
+.MoistureLevel {
+    font-family: "Outfit", sans-serif;
+    color: #f5f1e9;
+    font-size: 20px;
+    display: flex;
+    align-items: center;  /* Vertikale Zentrierung */
+    justify-content: center;  /* Horizontale Zentrierung */
+    gap: 8px; /* Abstand zwischen den Elementen */
+    width: 100%;
+    margin-top: 6px;
+    padding-bottom: 3px;
+}
+
+.LastUpdate {
+    display: flex;
+    color: #f5f1e9;
+    align-items: center;  /* Vertikale Zentrierung */
+    justify-content: center;  /* Horizontale Zentrierung */
+    font-family: "Outfit", sans-serif;
+    margin-bottom: -1px;
+    margin-top: -3px;
+}
+
+
+
+
+
+
+/* Gießen Seite */
 
 .water-button {
     font-family: 'Outfit', sans-serif;
@@ -112,6 +185,7 @@ body {
 
 }
 
+
 .button-container {
     display: flex; /* Flexbox aktivieren */
     justify-content: center; /* Bild horizontal zentrieren */
@@ -130,25 +204,6 @@ body {
     filter: drop-shadow(25px 2px 6px rgba(0, 0, 0, 0.4));
 }
 
-.droplet-button {
-    order: 2;
-    width: 30px; /* Größe des Buttons */
-    height: 50px; /* Größe des Buttons */
-    background-image: url('../../public/images/water_drop.png'); /* Bild als Hintergrund */
-    background-size: contain; /* Bild passt sich der Größe des Buttons an */
-    background-repeat: no-repeat; /* Verhindert das Wiederholen des Bildes */
-    border: none; /* Keine Umrandung */
-    background-color: transparent; /* Rest des Buttons transparent */
-    cursor: pointer; /* Handzeiger */
-}
-
-.MoistureLevel {
-    order: 1; /* Feuchtigkeitslevel bleibt an zweiter Stelle */
-}
-
-.LastUpdate {
-    order: 4;
-}
 
 /* Navbar */
 .navbar {
@@ -258,6 +313,94 @@ body {
     border-top: 1px solid #e5e7eb;
 }
 
+/* Profile */
+
+.py-12 {
+    margin-left: 50px;
+}
+
+.profile-header {
+    margin-left: 30px;
+    font-size: 25px;
+}
+
+#name {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
+#email {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    margin-left: 8.4px;
+    height: 20px;
+}
+
+#update_password_current_password {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
+#update_password_password {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
+#update_password_password_confirmation {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
+
+#save-password {
+    padding: 10px 20px;
+    background-color: #C4D9C1;
+    color: #205346;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#save-info {
+    padding: 10px 20px;
+    background-color: #C4D9C1;
+    color: #205346;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#delete-button {
+    padding: 10px 20px;
+    background-color: #C4D9C1;
+    color: #205346;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
 /* Installation Overview Grid */
 .installation-overview {
     display: grid;
@@ -339,6 +482,47 @@ body {
 }
 
 /* QR Scanner Container Styles */
+#html5-qrcode-anchor-scan-type-change {
+    color: #205346;
+    display: flex;
+    margin-top: 20px;
+    align-items: center; /* Zentriert den Inhalt horizontal */
+    justify-content: center; /* Falls nötig, vertikal zentrieren */
+}
+
+.mt-8 {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Zentriert den Inhalt horizontal */
+}
+
+.qr-box {
+    display: flex;
+    flex-direction: column; /* Stellt sicher, dass die Elemente untereinander sind */
+    align-items: center; /* Zentriert den Inhalt horizontal */
+    justify-content: center; /* Falls nötig, vertikal zentrieren */
+    gap: 20px; /* Abstand zwischen den Elementen */
+}
+
+.addDevice-button {
+    padding: 10px 20px;
+    background-color: #C4D9C1;
+    color: #205346;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#qr_code {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
 #qr-reader {
     width: 180px !important;
     height: 180px !important;
@@ -355,6 +539,7 @@ body {
 
 /* Style Scanner Region */
 #qr-reader__scan_region {
+    margin-top: -70px;
     padding: 0 !important;
     background: transparent !important;
 }

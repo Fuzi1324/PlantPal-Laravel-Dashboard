@@ -10,30 +10,31 @@
                         <h3 class="PlantDevice">
                             {{ $plant->name ?? 'Plant ' . ($plant->sensor_index + 1) }}
                         </h3>
-                        <span class="text-sm text-gray-500">
+                        <span class="device-name">
                             Device: {{ $plant->device_id }}
                         </span>
                     </div>
 
                     <div class="Plant-info">
-                        <div class="MoistureLevel">
-                            <span class="text-gray-600">Moisture Level:</span>
-                            <span
-                                class="font-medium {{ $plant->last_moisture < 30 ? 'text-red-500' : 'text-green-500' }}">
-                                {{ $plant->last_moisture }}%
-                            </span>
-                        </div>
+                        <button onclick="window.location.href='{{ route('devices.show', $plant->device->id) }}'" class="info-button">
+                            <div class="MoistureLevel">
+                                <span class="text-gray-600"><img src="{{ asset('images/water_drop.png') }}" alt="Drop Image" class="droplet"></span>
+                                <span
+                                    class="font-medium {{ $plant->last_moisture < 30 ? 'text-red-500' : 'text-green-500' }}">
+                                    {{ $plant->last_moisture }}%
+                                </span>
+                            </div>
 
                         <div class="LastUpdate">
-                            <span class="text-gray-600">Last Updated:</span>
+                            <span class="text-gray-600">Updated: </span>
                             <span class="text-sm text-gray-500">
                                 {{ $plant->last_message_at ? $plant->last_message_at->diffForHumans() : 'Never' }}
                             </span>
                         </div>
 
-                        <button onclick="window.location.href='{{ route('devices.show', $plant->device->id) }}'"
-                            class="droplet-button">
                         </button>
+
+
                     </div>
                 </div>
             @endforeach
@@ -43,7 +44,7 @@
             <h3 class="text-xl font-semibold mb-4">Add Device</h3>
             <form action="{{ route('installations.addDevice', $installation) }}" method="POST">
                 @csrf
-                <div class="Plant-info">
+                <div class="qr-box">
                     <div>
                         <label for="qr_code" class="block text-sm font-medium text-gray-700">
                             Enter QR Code or Device ID
@@ -56,7 +57,7 @@
                     <div id="qr-reader" class="w-full max-w-lg"></div>
 
                     <button type="submit"
-                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        class="addDevice-button">
                         Add Device
                     </button>
                 </div>
