@@ -88,7 +88,8 @@ body {
     text-align: center;
     color: #E4EBE3;
     width: 100%;
-    margin: 9px;
+    margin: 13px;
+    margin-bottom: 9px;
     box-sizing: border-box;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -158,10 +159,6 @@ body {
 }
 
 
-
-
-
-
 /* Gießen Seite */
 
 .water-button {
@@ -176,8 +173,8 @@ body {
 
 .water-button:hover {
     font-family: 'Outfit', sans-serif;
-    background-color: #E4EBE3;
-    color: #205346;
+    background-color: #426f64;
+    color: white;
     border: 2px solid #205346;
     padding: 10px 20px;
     border-radius: 9px;
@@ -352,7 +349,7 @@ body {
     height: 20px;
 }
 
-#update_password_password {
+#update_password_password, #password, #password_confirmation {
     font-family: 'Outfit', sans-serif;
     background-color: #e4f1e2;
     border: 1px solid gray;
@@ -371,8 +368,10 @@ body {
 }
 
 
-#save-password {
-    padding: 10px 20px;
+#save-password, #save-info, #delete-button, .ms-3, .ms-4, #reset-password {
+    font-family: 'Outfit', sans-serif;
+    padding: 7px 16px;
+    margin-top: 5px;
     background-color: #C4D9C1;
     color: #205346;
     border: none;
@@ -381,25 +380,18 @@ body {
     font-weight: bold;
 }
 
-#save-info {
-    padding: 10px 20px;
-    background-color: #C4D9C1;
-    color: #205346;
+#save-password:hover, #save-info:hover, #delete-button:hover, .ms-3:hover, .ms-4:hover, #reset-password:hover {
+    font-family: 'Outfit', sans-serif;
+    padding: 7px 16px;
+    margin-top: 5px;
+    background-color: #abc6a7;
+    color: #14372e;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
 }
 
-#delete-button {
-    padding: 10px 20px;
-    background-color: #C4D9C1;
-    color: #205346;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-}
 
 /* Installation Overview Grid */
 .installation-overview {
@@ -438,7 +430,7 @@ body {
     width: 180px;
     height: auto;
     border-radius: 0.75rem;
-    border: 2px solid #000000;
+    border: 2px solid #205346;
     margin-top: 1.5rem;
     margin-bottom: 1rem;
 }
@@ -506,12 +498,23 @@ body {
 }
 
 .addDevice-button {
+    font-family: 'Outfit', sans-serif;
     padding: 10px 20px;
     background-color: #C4D9C1;
     color: #205346;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.addDevice-button:hover {
+    font-family: 'Outfit', sans-serif;
+    padding: 10px 20px;
+    background-color: #abc6a7;
+    color: #14372e;
     border: none;
     border-radius: 5px;
-    font-weight: bold;
+    cursor: pointer;
 }
 
 #qr_code {
@@ -583,7 +586,7 @@ body {
 }
 
 #qr-reader__dashboard_section_csr button:hover {
-    background-color: #f8f9fa !important;
+    background-color: #e8f3ea !important;
 }
 
 /* Hide Camera Swap Link */
@@ -734,7 +737,7 @@ video {
 }
 
 .add-installation-button:hover {
-    background-color: #f8f9fa !important;
+    background-color: #e8f3ea !important;
 }
 /* Responsive Adjustments */
 @media (max-width: 640px) {
@@ -754,3 +757,5 @@ video {
     margin: 0 auto;
     padding: 0 1rem;
 }
+
+

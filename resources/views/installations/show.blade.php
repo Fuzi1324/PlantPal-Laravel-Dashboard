@@ -40,6 +40,8 @@
             @endforeach
         </div>
 
+
+
         <div class="mt-8">
             <h3 class="text-xl font-semibold mb-4">Add Device</h3>
             <form action="{{ route('installations.addDevice', $installation) }}" method="POST">
@@ -49,17 +51,19 @@
                         <label for="qr_code" class="block text-sm font-medium text-gray-700">
                             Enter QR Code or Device ID
                         </label>
+
                         <input type="text" name="qr_code" id="qr_code"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring-green-500"
                             required>
+                        <button type="submit"
+                                class="addDevice-button">
+                            Add Device
+                        </button>
                     </div>
 
                     <div id="qr-reader" class="w-full max-w-lg"></div>
 
-                    <button type="submit"
-                        class="addDevice-button">
-                        Add Device
-                    </button>
+
                 </div>
             </form>
         </div>
