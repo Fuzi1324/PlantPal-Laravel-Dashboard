@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div>
+    <div id="device-details">
         <h2>Device Details: {{ $device->device_id }}</h2>
             <div class="plant-container">
                 <img src="{{ asset('images/plant.png') }}" alt="Plant Image" class="plant-image">

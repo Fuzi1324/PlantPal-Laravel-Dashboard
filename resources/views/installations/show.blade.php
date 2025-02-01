@@ -1,7 +1,7 @@
 <!-- installations/show.blade.php -->
 <x-app-layout>
     <div class="container mx-auto px-4 py-8">
-        <h2 class="text-2xl font-bold mb-6">Plants in {{ $installation->name }}</h2>
+        <h2 id="plants-in" class="text-2xl font-bold mb-6">Plants in {{ $installation->name }}</h2>
 
         <div class="plant-grid">
             @foreach ($plants as $plant)

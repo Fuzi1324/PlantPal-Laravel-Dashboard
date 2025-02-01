@@ -9,6 +9,16 @@
 body {
     font-family: 'Outfit', sans-serif;
     background-color: #EBE4D2;
+    padding: 0;
+    margin: 0;
+}
+
+#device-details {
+    margin-left: 25px;
+}
+
+#plants-in {
+    margin-left: 25px;
 }
 
 /* Welcome page */
@@ -30,7 +40,7 @@ body {
 .WelcomeBox {
     background-color: #EBE4D2;
     color: #f5f1e9;
-    font-family: Arial, sans-serif;
+    font-family: "Outfit", sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,23 +67,22 @@ body {
 /* Container für das Pflanzenraster */
 .plant-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
     justify-content: center;
     padding: 20px;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
 }
 
 /* Einzelnes Pflanzen-Element */
 .plant-item {
     position: relative;
     height: 200px;
-    width: 150px;
-    margin-bottom: 50px;
-    border-radius: 8px;
+    width: 200px;
+    margin-bottom: 80px;
     background-image: url('../../public/images/palette_plant.png');
-    background-size: contain;
+    background-size: 100%;
     background-repeat: no-repeat;
     background-position: center top;
     display: flex;
@@ -87,11 +96,10 @@ body {
     font-family: "Grow West", sans-serif;
     text-align: center;
     color: #E4EBE3;
-    width: 100%;
-    margin: 13px;
-    margin-bottom: 9px;
+    width: 90%;
+    margin: 7px;
+    margin-top: 17px;
     box-sizing: border-box;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .PlantandDevice {
@@ -144,8 +152,6 @@ body {
     justify-content: center;  /* Horizontale Zentrierung */
     gap: 8px; /* Abstand zwischen den Elementen */
     width: 100%;
-    margin-top: 6px;
-    padding-bottom: 3px;
 }
 
 .LastUpdate {
@@ -154,8 +160,6 @@ body {
     align-items: center;  /* Vertikale Zentrierung */
     justify-content: center;  /* Horizontale Zentrierung */
     font-family: "Outfit", sans-serif;
-    margin-bottom: -1px;
-    margin-top: -3px;
 }
 
 
@@ -378,6 +382,10 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
+}
+
+#delete-button {
+    margin-bottom: 40px;
 }
 
 #save-password:hover, #save-info:hover, #delete-button:hover, .ms-3:hover, .ms-4:hover, #reset-password:hover {
@@ -740,16 +748,18 @@ video {
     background-color: #e8f3ea !important;
 }
 /* Responsive Adjustments */
-@media (max-width: 640px) {
-    .installation-overview {
-        grid-template-columns: 1fr;
-        padding: 1rem;
-    }
-
-    .installation-card {
-        min-height: 240px;
+@media (max-width: 900px) {
+    .plant-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Spalten auf kleineren Bildschirmen */
     }
 }
+
+@media (max-width: 600px) {
+    .plant-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 Spalte für sehr kleine Bildschirme */
+    }
+}
+
 
 /* Main Container */
 .main-container {
