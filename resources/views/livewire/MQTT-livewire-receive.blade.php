@@ -1,15 +1,12 @@
 <div wire:poll.5s="loadMessages">
-    <h2>Messages from Device: {{ $deviceId }}</h2>
 
-    @foreach ($messages as $date => $dayMessages)
-        <h3>{{ $date }}</h3>
-        <ul>
-            @foreach ($dayMessages as $message)
-                <li>
-                    <strong>{{ $message['created_at'] }}:</strong>
-                    {{ json_encode($message['payload']) }}
-                </li>
-            @endforeach
-        </ul>
-    @endforeach
+    @if (!empty($messages))
+        @php
+            $latestMessage = collect($messages)->first();
+            $latestEntry = collect($latestMessage)->first();
+            $moistureValues = array_values($latestEntry['payload']['uplink_message']['decoded_payload']['moisture_sensors'] ?? []);
+        @endphp
+
+        <p id="moisture-value" >{{ implode(', ', $moistureValues) }}%</p>
+    @endif
 </div>

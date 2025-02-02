@@ -36,8 +36,14 @@ class MQTTLivewireReceive extends Component
 
     public function render()
     {
+        $latestMessage = collect($this->messages)->first();
+        $latestEntry = collect($latestMessage)->first();
+        $moistureValues = array_values($latestEntry['payload']['uplink_message']['decoded_payload']['moisture_sensors'] ?? []);
+        $latestMoisture = $moistureValues[0] ?? 'N/A';
+
         return view('livewire.MQTT-livewire-receive', [
-            'messages' => $this->messages,
+            'latestMoisture' => $latestMoisture,
         ]);
     }
+
 }

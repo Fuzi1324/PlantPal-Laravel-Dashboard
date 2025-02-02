@@ -9,7 +9,7 @@
         @auth
             <x-dropdown align="right" width="48">
                 <x-slot name="trigger">
-                    <button class="dropdown-trigger-button">
+                    <button id="profile-button" class="dropdown-trigger-button">
                         <span>{{ Auth::user()->name }}</span>
                         <svg class="fill-current h-4 w-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
                             <path fill-rule="evenodd"
