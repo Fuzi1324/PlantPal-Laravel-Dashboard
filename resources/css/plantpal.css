@@ -1,0 +1,857 @@
+@font-face {
+    font-family: 'Outfit';
+    src: url('../fonts/Outfit-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* General Font */
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #EBE4D2;
+    padding: 0;
+    margin: 0;
+}
+
+#device-details {
+    margin-left: 50px;
+}
+
+#plants-in {
+    margin-left: 50px;
+}
+
+/* Welcome page */
+
+.welcome-text {
+    font-family: "Outfit", sans-serif;
+    background-color: rgba(32, 83, 70, 0.8); /* Halbtransparentes Weiß */
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 30px;
+    padding-bottom: 40px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.WelcomeBox {
+    background-color: #EBE4D2;
+    color: #f5f1e9;
+    font-family: "Outfit", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 87vh;
+}
+
+.img-logo {
+    width: 150px;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+
+/* Container für das Pflanzenraster */
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-content: center;
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+}
+
+/* Einzelnes Pflanzen-Element */
+.plant-item {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin-bottom: 80px;
+    background-image: url('../../public/images/palette_plant.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center top;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Infobereich unter der Pflanze */
+.Plant-info {
+    font-family: "Grow West", sans-serif;
+    text-align: center;
+    color: #E4EBE3;
+    width: 90%;
+    margin: 7px;
+    margin-top: 17px;
+    box-sizing: border-box;
+}
+
+.PlantandDevice {
+    position: relative;  /* Ermöglicht die Positionierung der .device-name innerhalb dieses Containers */
+    margin-bottom: 9.8rem;  /* Um etwas Platz unterhalb zu schaffen, falls gewünscht */
+    width: 100%;
+}
+
+.PlantDevice {
+    color: #205346;
+    position: absolute;
+}
+
+.device-name {
+    position: absolute;  /* Absolute Positionierung im Bezug auf den Elterncontainer (.PlantandDevice) */
+    margin-top: 245px;
+    color: #2B2F2B;
+}
+
+.droplet {
+    width: 20px; /* Größe des Buttons */
+    background-size: contain; /* Bild passt sich der Größe des Buttons an */
+    background-repeat: no-repeat; /* Verhindert das Wiederholen des Bildes */
+    border: none; /* Keine Umrandung */
+    background-color: transparent; /* Rest des Buttons transparent */
+}
+
+.info-button {
+    background-color: rgba(169, 217, 193, 0.3);
+    cursor: pointer; /* Handzeiger */
+    width: 85%;
+    border-radius: 9px;
+    border: 2px solid rgba(46, 104, 90, 0.5);
+}
+
+.info-button:hover {
+    background-color: rgba(46, 104, 90, 0.5);
+    cursor: pointer; /* Handzeiger */
+    border-radius: 9px;
+    border: 2px solid rgba(32, 83, 70, 0.5);
+    transition: background-color 0.07s ease-in-out 0.1s;
+}
+
+.MoistureLevel {
+    font-family: "Outfit", sans-serif;
+    color: #f5f1e9;
+    font-size: 20px;
+    display: flex;
+    align-items: center;  /* Vertikale Zentrierung */
+    justify-content: center;  /* Horizontale Zentrierung */
+    gap: 8px; /* Abstand zwischen den Elementen */
+    width: 100%;
+}
+
+.LastUpdate {
+    display: flex;
+    color: #f5f1e9;
+    align-items: center;  /* Vertikale Zentrierung */
+    justify-content: center;  /* Horizontale Zentrierung */
+    font-family: "Outfit", sans-serif;
+}
+
+
+/* Gießen Seite */
+
+.water-button {
+    font-family: 'Outfit', sans-serif;
+    background-color: #205346;
+    color: white;
+    border: 2px solid #205346;
+    padding: 10px 20px;
+    margin-top: 60px;
+    border-radius: 9px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.water-button:hover {
+    font-family: 'Outfit', sans-serif;
+    background-color: #426f64;
+    color: white;
+    border: 2px solid #205346;
+    padding: 10px 20px;
+    border-radius: 9px;
+    font-size: 16px;
+
+}
+
+
+.button-container {
+    display: flex; /* Flexbox aktivieren */
+    justify-content: center; /* Bild horizontal zentrieren */
+    align-items: center; /* Optional: Bild auch vertikal zentrieren */
+}
+
+.plant-container {
+    margin-top: 50px;
+    display: flex; /* Flexbox aktivieren */
+    justify-content: center; /* Bild horizontal zentrieren */
+    align-items: center; /* Optional: Bild auch vertikal zentrieren */
+}
+
+.plant-image {
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(25px 2px 6px rgba(0, 0, 0, 0.4));
+}
+
+.drippy-image {
+    width: 100px;
+    height: auto;
+    padding-right: 90px;
+    margin-left: -191px;
+    margin-top: 50px;
+}
+
+#moisture-value {
+    font-size: 35px;
+    padding: 10px;
+    margin-left: -182px;
+    margin-top: 134px;
+    color: white;
+    filter: drop-shadow(0px 0px 6px rgb(0, 0, 0, 0.99));
+}
+
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(to bottom, #347f6e 0%, #154531 100%);
+    color: #ffffff;
+    padding: 30px;
+    padding-top: 20px;
+    padding-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    margin-bottom: 2rem;
+}
+
+/* PLANTPAL Logo */
+
+@font-face {
+    font-family: 'Grow West';
+    src: url('../fonts/growwestregular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.navbar .logo {
+    font-family: "Grow West";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 3.4rem;
+    font-weight: normal;
+    letter-spacing: 0.05em;
+}
+
+/* Back Button */
+.navbar .back-button {
+    color: #ffffff;
+    font-size: 1.5rem;
+    margin-right: 2rem;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+.navbar .back-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Left Container for Back Button and Logo */
+.navbar .flex.items-center {
+    display: flex;
+    align-items: center;
+}
+
+/* Dropdown Button */
+.dropdown-trigger-button {
+    font-family: 'Outfit', sans-serif;
+    background-color: transparent;
+    color: white;
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.375rem;
+    transition: all 0.15s ease-in-out;
+}
+
+.dropdown-trigger-button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Dropdown Content */
+.dropdown-content {
+    font-family: 'Outfit', sans-serif;
+    position: absolute;
+    right: 0;
+    margin-top: 0.5rem;
+    min-width: 12rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    z-index: 50;
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 0.75rem 1rem;
+    color: #374151;
+    font-size: 0.875rem;
+    text-decoration: none;
+    transition: all 0.15s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    background-color: #f3f4f6;
+}
+
+.dropdown-content form {
+    margin: 0;
+}
+
+.dropdown-content a + form a {
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Profile */
+
+.py-12 {
+    margin-left: 50px;
+}
+
+.profile-header {
+    margin-left: 30px;
+    font-size: 25px;
+}
+
+#name {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
+#email {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    margin-left: 8.4px;
+    height: 20px;
+}
+
+#update_password_current_password {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
+#update_password_password, #password, #password_confirmation {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
+#update_password_password_confirmation {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
+
+#save-password, #save-info, #delete-button, .ms-3, .ms-4, #reset-password {
+    font-family: 'Outfit', sans-serif;
+    padding: 7px 16px;
+    margin-top: 5px;
+    background-color: #C4D9C1;
+    color: #205346;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#already-registered, #forgot-password, .DashboardClickl {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    padding: 6px 14px;
+    margin: 5px;
+    background-color: #C4D9C1;
+    color: #205346;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#already-registered:hover, #forgot-password:hover, .DashboardClickl:hover {
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    padding: 6px 14px;
+    margin: 5px;
+    background-color: #abc6a7;
+    color: #205346;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login, #register {
+    font-family: 'Outfit', sans-serif;
+    padding: 6px 16px;
+    margin-top: 5px;
+    background-color: #C4D9C1;
+    color: #205346;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login:hover, #register:hover {
+    font-family: 'Outfit', sans-serif;
+    padding: 6px 16px;
+    margin-top: 5px;
+    background-color: #abc6a7;
+    color: #14372e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#delete-button {
+    margin-bottom: 40px;
+}
+
+#save-password:hover, #save-info:hover, #delete-button:hover, .ms-3:hover, .ms-4:hover, #reset-password:hover {
+    font-family: 'Outfit', sans-serif;
+    padding: 7px 16px;
+    margin-top: 5px;
+    background-color: #abc6a7;
+    color: #14372e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+#profile-button {
+    border: 2px solid #14372e;
+    background-color: rgba(32, 83, 70, 0.9);
+    cursor: pointer;
+}
+
+#profile-button:hover {
+    border: 2px solid #14372e;
+    background-color: rgba(70, 106, 96, 0.4);
+    transition: background-color 0.09s ease-in-out 0.1s;
+}
+
+/* Installation Overview Grid */
+.installation-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Installation Card */
+.installation-card {
+    background: linear-gradient(to bottom, #72ae9e 40%, #e4ebe3 100%);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 280px;
+    text-decoration: none;
+}
+
+.installation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.installation-card img {
+    width: 180px;
+    height: auto;
+    border-radius: 0.75rem;
+    border: 2px solid #205346;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.installation-card h3 {
+    font-family: 'Outfit', sans-serif;
+    color: black;
+    font-size: 1.7rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+/* Add Installation Card */
+.add-device-card {
+    background: linear-gradient(to bottom, #72ae9e 40%, #e4ebe3 100%);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.add-installation-button {
+    font-family: 'Outfit', sans-serif;
+    background-color: white;
+    color: #305d4e;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.add-installation-button:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+/* QR Scanner Container Styles */
+#html5-qrcode-anchor-scan-type-change {
+    font-family: 'Outfit', sans-serif;
+    font-size: 15px;
+    padding: 5px 12px;
+    background-color: #e6f1e4;
+    color: #205346;
+    margin-bottom: -40px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+#html5-qrcode-anchor-scan-type-change:hover {
+    font-family: 'Outfit', sans-serif;
+    background-color: #dce4d9;
+    color: #205346;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.1s ease-in-out 0.1s;
+}
+
+.mt-8 {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.addDevice-button {
+    font-family: 'Outfit', sans-serif;
+    padding: 10px 20px;
+    background-color: #C4D9C1;
+    color: #205346;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.addDevice-button:hover {
+    font-family: 'Outfit', sans-serif;
+    padding: 10px 20px;
+    background-color: #abc6a7;
+    color: #14372e;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#qr_code {
+    font-family: 'Outfit', sans-serif;
+    background-color: #e4f1e2;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    height: 20px;
+}
+
+#qr-reader {
+    width: 180px !important;
+    height: 180px !important;
+    border: none !important;
+    background: transparent !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+}
+
+/* Hide Header Section */
+#qr-reader__header {
+    display: none !important;
+}
+
+/* Style Scanner Region */
+#qr-reader__scan_region {
+    margin-top: -70px;
+    padding: 0 !important;
+    background: transparent !important;
+}
+
+#qr-reader__scan_region > img {
+    display: none !important;
+}
+
+/* Camera Selection Area */
+#qr-reader__dashboard_section_csr {
+    padding-bottom: 10px;
+}
+
+#qr-reader__dashboard_section_csr > div {
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#qr-reader__dashboard_section_csr select,
+#qr-reader__dashboard_section_csr > div > span {
+    display: none !important;
+}
+
+#qr-reader__dashboard_section_csr button {
+    background-color: white !important;
+    color: #305d4e !important;
+    padding: 0.25rem 1rem !important;
+    border-radius: 0.5rem !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    width: 150px !important;
+    height: 50px !important;
+    margin: 0 !important;
+}
+
+
+#qr-reader__dashboard_section_csr button:hover {
+    background-color: #e8f3ea !important;
+}
+
+/* Hide Camera Swap Link */
+#qr-reader__dashboard_section_swaplink {
+    display: none !important;
+}
+
+/* Camera Feed */
+video {
+    width: 150px !important;
+    height: 150px !important;
+    object-fit: cover !important;
+    border-radius: 0.75rem !important;
+}
+
+/* QR Scanner Size Adjustment */
+#qr-reader {
+    width: 150px !important;
+    height: 150px !important;
+}
+
+/* File Selection Styling */
+#qr-reader__dashboard_section_fsr {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    width: 150px !important;
+    margin-top: 0.5rem !important;
+    order: 2 !important; /* Verschieben wir es nach oben, direkt nach dem Stop-Button */
+}
+
+#qr-reader__dashboard_section_fsr input {
+    display: none !important;
+}
+
+/* Styling für den Browse-Button */
+#qr-reader__file_selection {
+    background-color: white !important;
+    color: #305d4e !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.5rem !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+    border: none !important;
+    cursor: pointer !important;
+    width: 150px !important;
+    height: 32px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+}
+
+#qr-reader__file_selection:hover {
+    background-color: #f8f9fa !important;
+}
+
+/* Drop-Text Styling */
+#qr-reader__dashboard_section_fsr > div {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 0.75rem !important;
+    color: white !important;
+    text-align: center !important;
+    margin-top: 0.25rem !important;
+}
+
+/* Reihenfolge der Elemente */
+#qr-reader {
+    order: 1 !important;
+}
+
+#qr-reader__dashboard_section_csr {
+    order: 3 !important;
+}
+
+.qr-scanner-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    padding: 1rem 1rem 4rem 1rem;
+    position: relative;
+}
+
+/* Container für die Scanner-Elemente */
+#qr-reader__dashboard {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    align-items: center !important;
+}
+
+/* Hide Status Messages */
+#qr-reader__status_span {
+    display: none !important;
+}
+
+/* Form Layout */
+.qr-scanner-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 280px;
+    padding: 1rem 1rem 4rem 1rem;
+    position: relative;
+}
+
+/* Container für QR Scanner und Stop Button */
+#qr-reader,
+#qr-reader__dashboard_section_csr {
+    margin-bottom: auto !important;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Manual Input Section - Hidden */
+.manual-input {
+    display: none !important;
+}
+
+/* Add Installation Button */
+.add-installation-button {
+    background-color: white !important;
+    color: #305d4e !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 0.5rem !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+    width: 150px !important;
+    position: absolute !important;
+    bottom: 1rem !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+}
+
+.add-installation-button:hover {
+    background-color: #e8f3ea !important;
+}
+/* Responsive Adjustments */
+@media (max-width: 900px) {
+    .plant-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 Spalten auf kleineren Bildschirmen */
+    }
+}
+
+@media (max-width: 600px) {
+    .plant-grid {
+        grid-template-columns: repeat(1, 1fr); /* 1 Spalte für sehr kleine Bildschirme */
+    }
+}
+
+
+/* Main Container */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+

@@ -1,0 +1,14 @@
+{
+    "devices": [
+        {
+            "device_id": "0001-plant-00-01",
+            "application_id": "plant-pal",
+            "name": "0001-plant-00-01"
+        },
+        {
+            "device_id": "0001-plant-00-02",
+            "application_id": "plant-pal",
+            "name": "0001-plant-00-02"
+        }
+    ]
+}

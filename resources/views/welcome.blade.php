@@ -1,12 +1,28 @@
-@extends('layout.mainLayout')
+<x-guest-layout>
+    <div class="WelcomeBox">
+        <div class="welcome-text">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-logo">
+            <h1>Willkommen bei PlantPal!</h1>
+            <p>Mit PlantPal kannst du deine Pflanzen intelligent überwachen.</p>
 
-@section('content')
-    <h1>PlantPal</h1>
+            <p id="install-text">PlantPal-App installieren:</p>
+            <button id="install-button" style="display: none;">Install App</button>
 
-    <h2>Willkommen, USERNAME!</h2>
+            @if (Route::has('login'))
+                <div class="mt-6">
+                    @auth
+                        <a href="{{ url('/installations') }}" class="DashboardClickl">Dashboard</a>
+                    @else
+                        <a href="{{ route('login') }}" id="login" class="text-sm text-gray-700 underline">Log in</a>
 
-    <p id="install-text">PlantPal-App installieren:</p>
-    <button id="install-button" style="display: none;">Install App</button>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" id="register" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        @endif
+                    @endauth
+                </div>
+            @endif
+        </div>
+    </div>
 
     <script>
         let deferredPrompt;
@@ -65,4 +81,4 @@
         });
         updateUI();
     </script>
-@endsection
+</x-guest-layout>

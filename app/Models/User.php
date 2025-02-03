@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function installations()
+    {
+        return $this->hasMany(Installation::class);
+    }
 }
